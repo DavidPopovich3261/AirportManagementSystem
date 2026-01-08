@@ -1,5 +1,7 @@
 import { Student, RegularPassenger } from "../classes/Passenger.js"
 import { Airport } from "../classes/Airport.js"
+import { Baggage } from "../classes/bonusBaggage.js";
+
 import { test } from "node:test"
 import assert from "node:assert";
 
@@ -8,7 +10,7 @@ const airport = new Airport()
 const moshe = new RegularPassenger("moshe", 5000, null)
 const david = new Student("david", 100, "kodcode")
 
-console.log(david.buyAticket(airport.flights[0],"RegularTicket"));
+
 
 await test("Not enough money", () => {
     assert.deepEqual(david.buyAticket(airport.flights[0],"RegularTicket"),false)
@@ -24,3 +26,6 @@ await test("The passenger’s money is reduced by the correct ticket price",()=>
     assert.deepEqual(moshe.buyAticket(airport.flights[0],"RegularTicket").Price ,(previousAmount - moshe.getAmountOfMoney()))
 })
 
+test("No Ticket → No Baggage",()=>{
+    assert.deepEqual(new Baggage(10,"carry_on"))
+})

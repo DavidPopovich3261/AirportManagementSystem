@@ -1,7 +1,7 @@
 import { VIPTicket } from "./Ticket.js"
 import { Flight } from "./Flight.js"
 
-class Passenger {
+export class Passenger {
     #AmountOfMoney
     constructor(Name, AmountOfMoney,) {
         this.Name = Name
@@ -12,6 +12,13 @@ class Passenger {
 
     getAmountOfMoney(){
         return this.#AmountOfMoney
+    }
+    payment(amount){
+        if(amount <= this.#AmountOfMoney){
+            this.#AmountOfMoney -= amount
+            return true
+        }
+        return false
     }
 
     buyAticket(flight, typeTicket) {
